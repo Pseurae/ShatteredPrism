@@ -180,17 +180,16 @@ set(Launcher_HELP_URL "https://prismlauncher.org/wiki/help-pages/%1" CACHE STRIN
 ######## Set version numbers ########
 set(Launcher_VERSION_MAJOR 8)
 set(Launcher_VERSION_MINOR 4)
-set(Launcher_VERSION_PATCH 3)
 
-set(Launcher_VERSION_NAME "${Launcher_VERSION_MAJOR}.${Launcher_VERSION_MINOR}.${Launcher_VERSION_PATCH}")
-set(Launcher_VERSION_NAME4 "${Launcher_VERSION_MAJOR}.${Launcher_VERSION_MINOR}.${Launcher_VERSION_PATCH}.0")
-set(Launcher_VERSION_NAME4_COMMA "${Launcher_VERSION_MAJOR},${Launcher_VERSION_MINOR},${Launcher_VERSION_PATCH},0")
+set(Launcher_VERSION_NAME "${Launcher_VERSION_MAJOR}.${Launcher_VERSION_MINOR}")
+set(Launcher_VERSION_NAME4 "${Launcher_VERSION_MAJOR}.${Launcher_VERSION_MINOR}.0.0")
+set(Launcher_VERSION_NAME4_COMMA "${Launcher_VERSION_MAJOR},${Launcher_VERSION_MINOR},0,0")
 
 # Build platform.
 set(Launcher_BUILD_PLATFORM "unknown" CACHE STRING "A short string identifying the platform that this build was built for. Only used to display in the about dialog.")
 
 # Github repo URL with releases for updater
-set(Launcher_UPDATER_GITHUB_REPO "" CACHE STRING "Base github URL for the updater.")
+set(Launcher_UPDATER_GITHUB_REPO "https://github.com/unmojang/FjordLauncher" CACHE STRING "Base github URL for the updater.")
 
 # Name to help updater identify valid artifacts
 set(Launcher_BUILD_ARTIFACT "" CACHE STRING "Artifact name to help the updater identify valid artifacts.")
