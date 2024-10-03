@@ -22,7 +22,7 @@ assert lib.assertMsg (
   gamemodeSupport -> stdenv.isLinux
 ) "gamemodeSupport is only available on Linux.";
   stdenv.mkDerivation {
-    pname = "fjordlauncher-unwrapped";
+    pname = "shatteredprism-unwrapped";
     inherit version;
 
     src = lib.fileset.toSource {
@@ -94,12 +94,12 @@ assert lib.assertMsg (
         their own mods, texture packs, saves, etc) and helps you manage them and
         their associated options with a simple interface.
       '';
-      homepage = "https://fjordlauncher.org/";
+      homepage = "https://shatteredprism.org/";
       license = lib.licenses.gpl3Only;
       maintainers = with lib.maintainers; [
         evan-goode
       ];
-      mainProgram = "fjordlauncher";
+      mainProgram = "shatteredprism";
       platforms = lib.platforms.linux ++ lib.platforms.darwin;
     };
   }

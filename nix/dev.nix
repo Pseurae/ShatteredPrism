@@ -27,7 +27,7 @@
         ${config.pre-commit.installationScript}
       '';
 
-      inputsFrom = [config.packages.fjordlauncher-unwrapped];
+      inputsFrom = [config.packages.shatteredprism-unwrapped];
       buildInputs = with pkgs; [ccache ninja];
     };
 

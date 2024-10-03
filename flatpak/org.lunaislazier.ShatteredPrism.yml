@@ -1,4 +1,4 @@
-id: org.unmojang.FjordLauncher
+id: org.lunaislazier.ShatteredPrism
 runtime: org.kde.Platform
 runtime-version: 5.15-23.08
 sdk: org.kde.Sdk
@@ -13,7 +13,7 @@ add-extensions:
     autodelete: false
     directory: utils/gamescope
 
-command: fjordlauncher
+command: shatteredprism
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -36,7 +36,7 @@ modules:
   # Needed for proper Wayland support
   - libdecor.json
 
-  - name: fjordlauncher
+  - name: shatteredprism
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
@@ -155,10 +155,10 @@ modules:
     buildsystem: simple
     build-commands:
       - install -Dm755 prime-run /app/bin/prime-run
-      - mv /app/bin/fjordlauncher /app/bin/fjordrun
-      - install -Dm755 fjordlauncher /app/bin/fjordlauncher
+      - mv /app/bin/shatteredprism /app/bin/shatteredrun
+      - install -Dm755 shatteredprism /app/bin/shatteredprism
     sources:
       - type: file
         path: prime-run
       - type: file
-        path: fjordlauncher
+        path: shatteredprism

@@ -1,12 +1,12 @@
 [Desktop Entry]
 Version=1.0
-Name=Fjord Launcher
+Name=Shattered Prism
 Comment=Discover, manage, and play Minecraft instances
 Type=Application
 Terminal=false
 Exec=@Launcher_APP_BINARY_NAME@ %U
 StartupNotify=true
-Icon=org.unmojang.FjordLauncher
+Icon=org.lunaislazier.ShatteredPrism
 Categories=Game;ActionGame;AdventureGame;Simulation;
 Keywords=game;minecraft;mc;
 StartupWMClass=PrismLauncher

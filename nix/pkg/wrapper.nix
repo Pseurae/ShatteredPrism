@@ -2,7 +2,7 @@
   lib,
   stdenv,
   symlinkJoin,
-  fjordlauncher-unwrapped,
+  shatteredprism-unwrapped,
   addOpenGLRunpath,
   flite,
   gamemode,
@@ -51,12 +51,12 @@ assert lib.assertMsg (
 assert lib.assertMsg (
   withWaylandGLFW -> stdenv.isLinux
 ) "withWaylandGLFW is only available on Linux."; let
-  fjordlauncher' = fjordlauncher-unwrapped.override {inherit msaClientID gamemodeSupport;};
+  shatteredprism' = shatteredprism-unwrapped.override {inherit msaClientID gamemodeSupport;};
 in
   symlinkJoin {
-    name = "fjordlauncher-${fjordlauncher'.version}";
+    name = "shatteredprism-${shatteredprism'.version}";
 
-    paths = [fjordlauncher'];
+    paths = [shatteredprism'];
 
     nativeBuildInputs =
       [kdePackages.wrapQtAppsHook]
@@ -123,7 +123,7 @@ in
         ]
         ++ additionalPrograms;
     in
-      ["--prefix FJORDLAUNCHER_JAVA_PATHS : ${lib.makeSearchPath "bin/java" jdks}"]
+      ["--prefix SHATTEREDPRISM_JAVA_PATHS : ${lib.makeSearchPath "bin/java" jdks}"]
       ++ lib.optionals stdenv.isLinux [
         "--set LD_LIBRARY_PATH ${addOpenGLRunpath.driverLink}/lib:${lib.makeLibraryPath runtimeLibs}"
         "--prefix PATH : ${lib.makeBinPath runtimePrograms}"
@@ -131,7 +131,7 @@ in
 
     meta = {
       inherit
-        (fjordlauncher'.meta)
+        (shatteredprism'.meta)
         description
         longDescription
         homepage
