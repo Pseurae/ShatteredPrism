@@ -1,104 +1,40 @@
-# <img src="./program_info/org.unmojang.FjordLauncher.svg" alt="Fjord Launcher logo" width="96"/> Fjord Launcher
+<p align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="/program_info/shatteredprism-header.svg">
+  <source media="(prefers-color-scheme: light)" srcset="/program_info/shatteredprism-header.svg">
+  <img alt="ShatteredPrism" src="/program_info/shatteredprism-header.svg" width="40%">
+</picture>
+</p>
 
-Fjord Launcher is a **fork** of [Prism Launcher](https://github.com/PrismLauncher/PrismLauncher). It was based on [PollyMC](https://github.com/fn2006/PollyMC), which is now unmaintained. It is **not** endorsed by or affiliated with Prism Launcher or PollyMC.
+<p align="center">
+  ShatteredPrism is a custom launcher for Minecraft that allows you to easily manage multiple installations of Minecraft at once.<br />
+  <br />This is a <b>fork</b> of PrismLauncher and is <b>not</b> endorsed by it.
+</p>
 
-## Advantages of this fork over Prism Launcher
+# Advantages over PrismLauncher
 
-- [Support for alternative auth servers](doc/alternative-auth-servers.md)
+- Completely DRM-Free.
+- In-App FTB Modpack Downloading restored.
+- Support 3rd Party Auth Servers(courtesy of [this project](https://github.com/fn2006/PollyMC/)).
 
-- Ability to download FTB modpacks from within the launcher
-
-## Having a problem with the launcher?
-
-You **will not** open an issue in the Prism Launcher repo.
-
-You **will not** ask about Fjord Launcher in the Prism Launcher discord.
-
-You **will** ask in #fjord-launcher in our [Matrix space](https://matrix.to/#/#unmojang:matrix.org).
-
-You **will** open an issue [here](https://github.com/unmojang/FjordLauncher/issues).
 
 ## Installation
 
-### Windows
+- Downloads can be found on the [GitHub Releases](https://github.com/LunaisLazier/ShatteredPrism/releases).
+- Last build status can be found in the [GitHub Actions](https://github.com/LunaisLazier/ShatteredPrism/actions) tab (this also includes the pull requests status).
 
-#### [Scoop](https://scoop.sh) (recommended)
+## Community & Support
 
-```PowerShell
-scoop bucket add unmojang https://github.com/unmojang/scoop-unmojang
-scoop install unmojang/fjordlauncher
-```
+Feel free to create a GitHub issue if you find a bug or want to suggest something, it is currently the **only** way to contact anyone regarding this project.
 
-#### Windows (Manual)
+Do **not** ask for support on any of the official PrismLauncher channels as they cannot be held responsible for any issues caused by the changes made.
 
-You can get installers or portable builds from the [releases section](https://github.com/unmojang/FjordLauncher/releases/latest), MSVC builds are recommended over MinGW builds, but there's no real difference.
 
-### macOS
+## License [![https://github.com/PrismLauncher/PrismLauncher/blob/develop/LICENSE](https://img.shields.io/github/license/PrismLauncher/PrismLauncher?label=License&logo=gnu&color=C4282D)](LICENSE)
 
-#### [Homebrew](https://brew.sh) (recommended)
+All launcher code is available under the GPL-3.0-only license.
 
-```Shell
-brew tap unmojang/homebrew-unmojang
-brew install --cask fjordlauncher
-```
-
-#### macOS (Manual)
-
-There are builds for macOS in the [releases section](https://github.com/unmojang/FjordLauncher/releases/latest).
-
-### Flatpak
-
-```Shell
-flatpak remote-add --user --if-not-exists unmojang https://unmojang.github.io/unmojang-flatpak/index.flatpakrepo
-flatpak install org.unmojang.FjordLauncher
-```
-
-### Arch Linux
-
-Fjord Launcher is [available](https://aur.archlinux.org/packages?O=0&K=fjordlauncher) from the AUR:
-
-```Shell
-paru -S fjordlauncher
-paru -S fjordlauncher-git # build latest Git commit from source
-```
-
-`fjordlauncher` is available in [Chaotic-AUR](https://aur.chaotic.cx/).
-
-The `fjordlauncher-bin` AUR package is broken; see [https://github.com/unmojang/FjordLauncher/issues/20](https://github.com/unmojang/FjordLauncher/issues/20).
-
-### Debian/Ubuntu
-
-Install from the MPR with [Mist](https://docs.makedeb.org/using-the-mpr/mist-the-mpr-cli/#installing-mist):
-
-```Shell
-mist install fjordlauncher
-mist install fjordlauncher-bin # binary package
-mist install fjordlauncher-git # build latest Git commit from source
-```
-
-### Nix
-
-This repository contains a Nix flake:
-
-```Shell
-nix run github:unmojang/FjordLauncher
-```
-
-See [nix/README.md](nix/README.md) for details.
-
-### Gentoo
-
-Install from the [unmojang overlay](https://github.com/unmojang/unmojang-overlay):
-
-```Shell
-eselect repository add unmojang-overlay git https://github.com/unmojang/unmojang-overlay
-emerge --sync unmojang-overlay
-emerge -av games-action/fjordlauncher
-```
-
-### Other Linux
-
-AppImages are available in the [releases section](https://github.com/unmojang/FjordLauncher/releases/latest).
+The logo and related assets are under the CC BY-NC-SA 4.0 license.
 
 ## Building
 

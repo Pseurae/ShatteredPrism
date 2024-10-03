@@ -72,7 +72,18 @@ QString getCreditsHtml()
     stream << "<center>\n";
 
     //: %1 is the name of the launcher, determined at build time, e.g. "Prism Launcher Developers"
-    stream << "<h3>" << QObject::tr("%1 Developers", "About Credits").arg(BuildConfig.LAUNCHER_DISPLAYNAME) << "</h3>\n";
+    stream << "<h3>" << QObject::tr("%1 Developer", "About Credits").arg(BuildConfig.LAUNCHER_DISPLAYNAME) << "</h3>\n";
+    stream << QString("<p>LunaisLazier %1</p>\n").arg(getGitHub("lunaislazier"));
+    stream << "<br />\n";
+
+    //: %1 is the name of the launcher, determined at build time, e.g. "Prism Launcher Contributors"
+    stream << "<h3>" << QObject::tr("%1 Contributors", "About Credits").arg(BuildConfig.LAUNCHER_DISPLAYNAME) << "</h3>\n";
+    stream << QString("<p>Chaiznt %1</p>\n").arg(getGitHub("chai-znt"));
+    stream << QString("<p>Raia/Lichen %1</p>\n").arg(getWebsite("https://twitter.com/LichenOnaWall"));
+    stream << "<br />\n";
+    
+    //: %1 is the name of the launcher, determined at build time, e.g. "Prism Launcher Contributors"
+    stream << "<h3>" << QObject::tr("%1 Contributors", "About Credits").arg("Fjord Launcher") << "</h3>\n";
     stream << QString("<p>Evan Goode %1</p>\n").arg(getGitHub("evan-goode"));
     stream << "<br />\n";
 

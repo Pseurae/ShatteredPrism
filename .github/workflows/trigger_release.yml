@@ -1,6 +1,7 @@
 name: Build Application and Make Release
 
 on:
+ workflow_dispatch:
   push:
     tags:
       - "*"
@@ -36,7 +37,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: "true"
-          path: "FjordLauncher-source"
+          path: "ShatteredPrism-source"
       - name: Download artifacts
         uses: actions/download-artifact@v4
       - name: Grab and store version
@@ -45,38 +46,38 @@ jobs:
           echo "VERSION=$tag_name" >> $GITHUB_ENV
       - name: Package artifacts properly
         run: |
-          mv ${{ github.workspace }}/FjordLauncher-source FjordLauncher-${{ env.VERSION }}
-          mv FjordLauncher-Linux-Qt6-Portable*/FjordLauncher-portable.tar.gz FjordLauncher-Linux-Qt6-Portable-${{ env.VERSION }}.tar.gz
-          mv FjordLauncher-Linux-Qt5-Portable*/FjordLauncher-portable.tar.gz FjordLauncher-Linux-Qt5-Portable-${{ env.VERSION }}.tar.gz
-          mv FjordLauncher-*.AppImage/FjordLauncher-*.AppImage FjordLauncher-Linux-x86_64.AppImage
-          mv FjordLauncher-*.AppImage.zsync/FjordLauncher-*.AppImage.zsync FjordLauncher-Linux-x86_64.AppImage.zsync
-          mv FjordLauncher-macOS-Legacy*/FjordLauncher.zip FjordLauncher-macOS-Legacy-${{ env.VERSION }}.zip
-          mv FjordLauncher-macOS*/FjordLauncher.zip FjordLauncher-macOS-${{ env.VERSION }}.zip
+          mv ${{ github.workspace }}/ShatteredPrism-source ShatteredPrism-${{ env.VERSION }}
+          mv ShatteredPrism-Linux-Qt6-Portable*/ShatteredPrism-portable.tar.gz ShatteredPrism-Linux-Qt6-Portable-${{ env.VERSION }}.tar.gz
+          mv ShatteredPrism-Linux-Qt5-Portable*/ShatteredPrism-portable.tar.gz ShatteredPrism-Linux-Qt5-Portable-${{ env.VERSION }}.tar.gz
+          mv ShatteredPrism-*.AppImage/ShatteredPrism-*.AppImage ShatteredPrism-Linux-x86_64.AppImage
+          mv ShatteredPrism-*.AppImage.zsync/ShatteredPrism-*.AppImage.zsync ShatteredPrism-Linux-x86_64.AppImage.zsync
+          mv ShatteredPrism-macOS-Legacy*/ShatteredPrism.zip ShatteredPrism-macOS-Legacy-${{ env.VERSION }}.zip
+          mv ShatteredPrism-macOS*/ShatteredPrism.zip ShatteredPrism-macOS-${{ env.VERSION }}.zip
 
-          tar --exclude='.git' -czf FjordLauncher-${{ env.VERSION }}.tar.gz FjordLauncher-${{ env.VERSION }}
+          tar --exclude='.git' -czf ShatteredPrism-${{ env.VERSION }}.tar.gz ShatteredPrism-${{ env.VERSION }}
 
-          for d in FjordLauncher-Windows-MSVC*; do
+          for d in ShatteredPrism-Windows-MSVC*; do
             cd "${d}" || continue
             LEGACY="$(echo -n ${d} | grep -o Legacy || true)"
             ARM64="$(echo -n ${d} | grep -o arm64 || true)"
             INST="$(echo -n ${d} | grep -o Setup || true)"
             PORT="$(echo -n ${d} | grep -o Portable || true)"
-            NAME="FjordLauncher-Windows-MSVC"
+            NAME="ShatteredPrism-Windows-MSVC"
             test -z "${LEGACY}" || NAME="${NAME}-Legacy"
             test -z "${ARM64}" || NAME="${NAME}-arm64"
             test -z "${PORT}" || NAME="${NAME}-Portable"
-            test -z "${INST}" || mv FjordLauncher-*.exe ../${NAME}-Setup-${{ env.VERSION }}.exe
+            test -z "${INST}" || mv ShatteredPrism-*.exe ../${NAME}-Setup-${{ env.VERSION }}.exe
             test -n "${INST}" || zip -r -9 "../${NAME}-${{ env.VERSION }}.zip" *
             cd ..
           done
 
-          for d in FjordLauncher-Windows-MinGW-w64*; do
+          for d in ShatteredPrism-Windows-MinGW-w64*; do
             cd "${d}" || continue
             INST="$(echo -n ${d} | grep -o Setup || true)"
             PORT="$(echo -n ${d} | grep -o Portable || true)"
-            NAME="FjordLauncher-Windows-MinGW-w64"
+            NAME="ShatteredPrism-Windows-MinGW-w64"
             test -z "${PORT}" || NAME="${NAME}-Portable"
-            test -z "${INST}" || mv FjordLauncher-*.exe ../${NAME}-Setup-${{ env.VERSION }}.exe
+            test -z "${INST}" || mv ShatteredPrism-*.exe ../${NAME}-Setup-${{ env.VERSION }}.exe
             test -n "${INST}" || zip -r -9 "../${NAME}-${{ env.VERSION }}.zip" *
             cd ..
           done
@@ -87,23 +88,23 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: ${{ github.ref }}
-          name: Fjord Launcher ${{ env.VERSION }}
+          name: Shattered Prism ${{ env.VERSION }}
           draft: true
           prerelease: false
           files: |
-            FjordLauncher-Linux-Qt5-Portable-${{ env.VERSION }}.tar.gz
-            FjordLauncher-Linux-x86_64.AppImage
-            FjordLauncher-Linux-x86_64.AppImage.zsync
-            FjordLauncher-Linux-Qt6-Portable-${{ env.VERSION }}.tar.gz
-            FjordLauncher-Windows-MinGW-w64-${{ env.VERSION }}.zip
-            FjordLauncher-Windows-MinGW-w64-Portable-${{ env.VERSION }}.zip
-            FjordLauncher-Windows-MinGW-w64-Setup-${{ env.VERSION }}.exe
-            FjordLauncher-Windows-MSVC-arm64-${{ env.VERSION }}.zip
-            FjordLauncher-Windows-MSVC-arm64-Portable-${{ env.VERSION }}.zip
-            FjordLauncher-Windows-MSVC-arm64-Setup-${{ env.VERSION }}.exe
-            FjordLauncher-Windows-MSVC-${{ env.VERSION }}.zip
-            FjordLauncher-Windows-MSVC-Portable-${{ env.VERSION }}.zip
-            FjordLauncher-Windows-MSVC-Setup-${{ env.VERSION }}.exe
-            FjordLauncher-macOS-${{ env.VERSION }}.zip
-            FjordLauncher-macOS-Legacy-${{ env.VERSION }}.zip
-            FjordLauncher-${{ env.VERSION }}.tar.gz
+            ShatteredPrism-Linux-Qt5-Portable-${{ env.VERSION }}.tar.gz
+            ShatteredPrism-Linux-x86_64.AppImage
+            ShatteredPrism-Linux-x86_64.AppImage.zsync
+            ShatteredPrism-Linux-Qt6-Portable-${{ env.VERSION }}.tar.gz
+            ShatteredPrism-Windows-MinGW-w64-${{ env.VERSION }}.zip
+            ShatteredPrism-Windows-MinGW-w64-Portable-${{ env.VERSION }}.zip
+            ShatteredPrism-Windows-MinGW-w64-Setup-${{ env.VERSION }}.exe
+            ShatteredPrism-Windows-MSVC-arm64-${{ env.VERSION }}.zip
+            ShatteredPrism-Windows-MSVC-arm64-Portable-${{ env.VERSION }}.zip
+            ShatteredPrism-Windows-MSVC-arm64-Setup-${{ env.VERSION }}.exe
+            ShatteredPrism-Windows-MSVC-${{ env.VERSION }}.zip
+            ShatteredPrism-Windows-MSVC-Portable-${{ env.VERSION }}.zip
+            ShatteredPrism-Windows-MSVC-Setup-${{ env.VERSION }}.exe
+            ShatteredPrism-macOS-${{ env.VERSION }}.zip
+            ShatteredPrism-macOS-Legacy-${{ env.VERSION }}.zip
+            ShatteredPrism-${{ env.VERSION }}.tar.gz
