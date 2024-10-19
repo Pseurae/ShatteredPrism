@@ -11,11 +11,11 @@
   <br />This is a <b>fork</b> of PrismLauncher and is <b>not</b> endorsed by it.
 </p>
 
-# Advantages over PrismLauncher
+# Why does this exist?
 
-- Completely DRM-Free.
-- In-App FTB Modpack Downloading restored.
-- Support 3rd Party Auth Servers(courtesy of [this project](https://github.com/fn2006/PollyMC/)).
+- Fully removed Prism's DRM.
+- Restores the ability to download modpacks from FTB.
+- [Support for Alternative Auth Servers](doc/alternative-auth-servers.md).
 
 
 ## Installation
