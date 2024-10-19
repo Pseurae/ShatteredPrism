@@ -13,9 +13,9 @@
 
 # Why does this exist?
 
-- Fully removed Prism's DRM.
+- Fully removed PrismLauncher's DRM.
 - Restores the ability to download modpacks from FTB.
-- [Support for Alternative Auth Servers](doc/alternative-auth-servers.md).
+- [Support for alternative auth servers](doc/alternative-auth-servers.md).
 
 
 ## Installation
