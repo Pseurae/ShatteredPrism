@@ -23,8 +23,8 @@
 
       ```
       {
-        inputs.fjordlauncher = {
-          url = "github:unmojang/FjordLauncher";
+        inputs.shatteredprism = {
+          url = "github:lunaislazier/ShatteredPrism";
           inputs = {
             flake-compat.follows = "";
           };
@@ -74,7 +74,7 @@
         in
         {
           default = pkgs.mkShell {
-            inputsFrom = [ self.packages.${system}.fjordlauncher-unwrapped ];
+            inputsFrom = [ self.packages.${system}.shatteredprism-unwrapped ];
             buildInputs = with pkgs; [
               ccache
               ninja
@@ -91,7 +91,7 @@
           version = builtins.substring 0 8 self.lastModifiedDate or "dirty";
         in
         {
-          fjordlauncher-unwrapped = prev.callPackage ./nix/unwrapped.nix {
+          shatteredprism-unwrapped = prev.callPackage ./nix/unwrapped.nix {
             inherit
               libnbtplusplus
               nix-filter
@@ -100,7 +100,7 @@
               ;
           };
 
-          fjordlauncher = final.callPackage ./nix/wrapper.nix { };
+          shatteredprism = final.callPackage ./nix/wrapper.nix { };
         };
 
       packages = forAllSystems (
@@ -109,12 +109,12 @@
           pkgs = nixpkgsFor.${system};
 
           # Build a scope from our overlay
-          fjordPackages = lib.makeScope pkgs.newScope (final: self.overlays.default final pkgs);
+          shatteredPackages = lib.makeScope pkgs.newScope (final: self.overlays.default final pkgs);
 
           # Grab our packages from it and set the default
           packages = {
-            inherit (fjordPackages) fjordlauncher-unwrapped fjordlauncher;
-            default = fjordPackages.fjordlauncher;
+            inherit (shatteredPackages) shatteredprism-unwrapped shatteredprism;
+            default = shatteredPackages.shatteredprism;
           };
         in
         # Only output them if they're available on the current system
@@ -125,15 +125,15 @@
       legacyPackages = forAllSystems (
         system:
         let
-          fjordPackages = self.packages.${system};
+          shatteredPackages = self.packages.${system};
           legacyPackages = self.legacyPackages.${system};
         in
         {
-          fjordlauncher-debug = fjordPackages.fjordlauncher.override {
-            fjordlauncher-unwrapped = legacyPackages.fjordlauncher-unwrapped-debug;
+          shatteredprism-debug = shatteredPackages.shatteredprism.override {
+            shatteredprism-unwrapped = legacyPackages.shatteredprism-unwrapped-debug;
           };
 
-          fjordlauncher-unwrapped-debug = fjordPackages.fjordlauncher-unwrapped.overrideAttrs {
+          shatteredprism-unwrapped-debug = shatteredPackages.shatteredprism-unwrapped.overrideAttrs {
             cmakeBuildType = "Debug";
             dontStrip = true;
           };

@@ -24,7 +24,7 @@ assert lib.assertMsg (
   gamemodeSupport -> stdenv.isLinux
 ) "gamemodeSupport is only available on Linux.";
 stdenv.mkDerivation {
-  pname = "fjordlauncher-unwrapped";
+  pname = "shatteredprism-unwrapped";
   inherit version;
 
   src = nix-filter.lib {
@@ -96,12 +96,12 @@ stdenv.mkDerivation {
       their own mods, texture packs, saves, etc) and helps you manage them and
       their associated options with a simple interface.
     '';
-    homepage = "https://github.com/unmojang/FjordLauncher";
+    homepage = "https://github.com/lunaislazier/ShatteredPrism";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [
       evan-goode
     ];
-    mainProgram = "fjordlauncher";
+    mainProgram = "shatteredprism";
     platforms = lib.platforms.linux ++ lib.platforms.darwin;
   };
 }
