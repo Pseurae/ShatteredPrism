@@ -1,8 +1,8 @@
-# Shattered Prism Nix Packaging
+# Fjord Launcher Nix Packaging
 
 ## Installing a stable release (nixpkgs)
 
-Shattered Prism is packaged in [nixpkgs](https://github.com/NixOS/nixpkgs/) since 22.11.
+Fjord Launcher is packaged in [nixpkgs](https://github.com/NixOS/nixpkgs/) since 22.11.
 
 See [Package variants](#package-variants) for a list of available packages.
 
@@ -28,7 +28,7 @@ Example (NixOS):
 
 ### Installing the package directly
 
-After adding `github:lunaislazier/ShatteredPrism` to your flake inputs, you can access the flake's `packages` output.
+After adding `github:unmojang/FjordLauncher` to your flake inputs, you can access the flake's `packages` output.
 
 Example:
 
@@ -37,10 +37,10 @@ Example:
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    shatteredprism = {
-      url = "github:lunaislazier/ShatteredPrism";
+    fjordlauncher = {
+      url = "github:unmojang/FjordLauncher";
 
-      # Optional: Override the nixpkgs input of shatteredprism to use the same revision as the rest of your flake
+      # Optional: Override the nixpkgs input of fjordlauncher to use the same revision as the rest of your flake
       # Note that this may break the reproducibility mentioned above, and you might not be able to access the binary cache
       #
       # inputs.nixpkgs.follows = "nixpkgs";
@@ -51,7 +51,7 @@ Example:
   };
 
   outputs =
-    { nixpkgs, shatteredprism, ... }:
+    { nixpkgs, fjordlauncher, ... }:
     {
       nixosConfigurations.foo = nixpkgs.lib.nixosSystem {
         modules = [
@@ -60,7 +60,7 @@ Example:
           (
             { pkgs, ... }:
             {
-              environment.systemPackages = [ shatteredprism.packages.${pkgs.system}.shatteredprism ];
+              environment.systemPackages = [ fjordlauncher.packages.${pkgs.system}.fjordlauncher ];
             }
           )
         ];
@@ -72,7 +72,7 @@ Example:
 ### Using the overlay
 
 Alternatively, if you don't want to use our `packages` output, you can add our overlay to your nixpkgs instance.
-This will ensure Shattered Prism is built with your system's packages.
+This will ensure Fjord is built with your system's packages.
 
 > [!WARNING]
 > Depending on what revision of nixpkgs your system uses, this may result in binaries that differ from the above `packages` output
@@ -85,10 +85,10 @@ Example:
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    shatteredprism = {
-      url = "github:lunaislazier/ShatteredPrism";
+    fjordlauncher = {
+      url = "github:unmojang/FjordLauncher";
 
-      # Optional: Override the nixpkgs input of shatteredprism to use the same revision as the rest of your flake
+      # Optional: Override the nixpkgs input of fjordlauncher to use the same revision as the rest of your flake
       # Note that this may break the reproducibility mentioned above, and you might not be able to access the binary cache
       #
       # inputs.nixpkgs.follows = "nixpkgs";
@@ -99,7 +99,7 @@ Example:
   };
 
   outputs =
-    { nixpkgs, shatteredprism, ... }:
+    { nixpkgs, fjordlauncher, ... }:
     {
       nixosConfigurations.foo = nixpkgs.lib.nixosSystem {
         modules = [
@@ -108,9 +108,9 @@ Example:
           (
             { pkgs, ... }:
             {
-              nixpkgs.overlays = [ shatteredprism.overlays.default ];
+              nixpkgs.overlays = [ fjordlauncher.overlays.default ];
 
-              environment.systemPackages = [ pkgs.shatteredprism ];
+              environment.systemPackages = [ pkgs.fjordlauncher ];
             }
           )
         ];
@@ -126,11 +126,11 @@ You can simply call the default package of this flake.
 Example:
 
 ```shell
-nix run github:lunaislazier/ShatteredPrism
+nix run github:unmojang/FjordLauncher
 
-nix shell github:lunaislazier/ShatteredPrism
+nix shell github:unmojang/FjordLauncher
 
-nix profile install github:lunaislazier/ShatteredPrism
+nix profile install github:unmojang/FjordLauncher
 ```
 
 ## Installing a development release (without flakes)
@@ -163,8 +163,8 @@ Example:
 {
   environment.systemPackages = [
     (import (
-      builtins.fetchTarball "https://github.com/ShatteredPrism/ShatteredPrism/archive/develop.tar.gz"
-    )).packages.${pkgs.system}.shatteredprism
+      builtins.fetchTarball "https://github.com/FjordLauncher/FjordLauncher/archive/develop.tar.gz"
+    )).packages.${pkgs.system}.fjordlauncher
   ];
 }
 ```
@@ -172,7 +172,7 @@ Example:
 ### Using the overlay (`fetchTarball`)
 
 Alternatively, if you don't want to use our `packages` output, you can add our overlay to your instance of nixpkgs.
-This results in Shattered Prism using your system's libraries
+This results in Fjord using your system's libraries
 
 Example:
 
@@ -181,11 +181,11 @@ Example:
 {
   nixpkgs.overlays = [
     (import (
-      builtins.fetchTarball "https://github.com/ShatteredPrism/ShatteredPrism/archive/develop.tar.gz"
+      builtins.fetchTarball "https://github.com/FjordLauncher/FjordLauncher/archive/develop.tar.gz"
     )).overlays.default
   ];
 
-  environment.systemPackages = [ pkgs.shatteredprism ];
+  environment.systemPackages = [ pkgs.fjordlauncher ];
 }
 ```
 
@@ -196,23 +196,23 @@ You can add this repository as a channel and install its packages that way.
 Example:
 
 ```shell
-nix-channel --add https://github.com/lunaislazier/ShatteredPrism/archive/develop.tar.gz shatteredprism
+nix-channel --add https://github.com/unmojang/FjordLauncher/archive/develop.tar.gz fjordlauncher
 
-nix-channel --update shatteredprism
+nix-channel --update fjordlauncher
 
-nix-env -iA shatteredprism.shatteredprism
+nix-env -iA fjordlauncher.fjordlauncher
 ```
 
 ## Package variants
 
 Both Nixpkgs and this repository offer the following packages:
 
-- `shatteredprism` - The preferred build, wrapped with everything necessary to run the launcher and Minecraft
-- `shatteredprism-unwrapped` - A minimal build that allows for advanced customization of the launcher's runtime environment
+- `fjordlauncher` - The preferred build, wrapped with everything necessary to run the launcher and Minecraft
+- `fjordlauncher-unwrapped` - A minimal build that allows for advanced customization of the launcher's runtime environment
 
 ### Customizing wrapped packages
 
-The wrapped package (`shatteredprism`) offers some build parameters to further customize the launcher's environment.
+The wrapped package (`fjordlauncher`) offers some build parameters to further customize the launcher's environment.
 
 The following parameters can be overridden:
 
@@ -220,7 +220,7 @@ The following parameters can be overridden:
 - `additionalPrograms` (default: `[ ]`) Additional libraries that will be added to `PATH`
 - `controllerSupport` (default: `isLinux`) Turn on/off support for controllers on Linux (macOS will always have this)
 - `gamemodeSupport` (default: `isLinux`) Turn on/off support for [Feral GameMode](https://github.com/FeralInteractive/gamemode) on Linux
-- `jdks` (default: `[ jdk21 jdk17 jdk8 ]`) Java runtimes added to `SHATTEREDPRISM_JAVA_PATHS` variable
+- `jdks` (default: `[ jdk21 jdk17 jdk8 ]`) Java runtimes added to `FJORDLAUNCHER_JAVA_PATHS` variable
 - `msaClientID` (default: `null`, requires full rebuild!) Client ID used for Microsoft Authentication
 - `textToSpeechSupport` (default: `isLinux`) Turn on/off support for text-to-speech on Linux (macOS will always have this)
 - `withWaylandGLFW` (default: `isLinux`) Build with support for native Wayland via a custom GLFW

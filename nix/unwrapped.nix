@@ -99,7 +99,7 @@ stdenv.mkDerivation {
     homepage = "https://github.com/lunaislazier/ShatteredPrism";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [
-      evan-goode
+      lunaislazier
     ];
     mainProgram = "shatteredprism";
     platforms = lib.platforms.linux ++ lib.platforms.darwin;
